@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
+use App\Models\Inscription;
 use App\Models\Semestre;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -23,7 +24,7 @@ class StudentController extends Controller
                 'email' => $etudiant->user->email,
                 "date_naissance"=> date('d-m-Y', strtotime($etudiant->date_naissance)),
                 "numero_etudiant"=> $etudiant->numero_etudiant,
-                'filiere' => $etudiant->filiere->abreviation,
+                'filiere' => $etudiant->filiere->abbreviation,
             ];
         }
 
@@ -31,8 +32,12 @@ class StudentController extends Controller
     }
 
     public function byModule(Request $request){
-        $id = $request->id;
+        $module_id = $request->module_id;
 
+        $inscriptions = Inscription::with("etudiant.user", "module.enseignant")
+            ->where("module_id", "=", $module_id)
+            ->get();
 
+        return response()->json($inscriptions);
     }
 }

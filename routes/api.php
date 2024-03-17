@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/students', [StudentController::class, 'index']);
+Route::get('/module/{module_id}/students', [StudentController::class, 'byModule']);
+
 Route::get('/modules', [ModuleController::class, 'index']);
 Route::get('/filieres/{filiere}/semestres/{semestre}/modules', [ModuleController::class, 'moduleByFiliereSemestre']);
 Route::get('/filieres/{filiere}/modules', [ModuleController::class, 'moduleByFiliere']);

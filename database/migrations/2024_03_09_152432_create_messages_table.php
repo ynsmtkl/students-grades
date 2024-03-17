@@ -15,8 +15,8 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('expediteur_id')->constrained('users'); // A modifier selon la structure de votre modèle 'Utilisateur'
-            $table->foreignId('destinataire_id')->constrained('users'); // A modifier selon la structure de votre modèle 'Utilisateur'
+            $table->foreignId('expediteur_id')->constrained('users');
+            $table->foreignId('destinataire_id')->constrained('users');
             $table->string('objet');
             $table->text('contenu');
             $table->date('date_envoi');

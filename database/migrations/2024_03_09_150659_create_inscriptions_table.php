@@ -16,9 +16,7 @@ class CreateInscriptionsTable extends Migration
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('etudiant_id')->constrained();
-            $table->foreignId('semestre_id')->constrained();
-            $table->string('annee_universitaire');
-            $table->string('statut')->default('en cours'); // 'en cours', 'validee', 'annulee'
+            $table->foreignId('module_id')->constrained();
             $table->timestamps();
         });
     }
