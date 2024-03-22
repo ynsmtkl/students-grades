@@ -20,7 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/students', [StudentController::class, 'index']);
-Route::get('/module/{module_id}/students', [StudentController::class, 'byModule']);
+Route::get('/students/{etudiant}/show', [StudentController::class, 'show']);
+Route::post('/students/add', [StudentController::class, 'addStudent']);
+Route::post('/students/{etudiant}/update', [StudentController::class, 'update']);
+Route::delete('/students/{etudiant}/delete', [StudentController::class, 'destroy']);
+Route::get('/module/{module}/students', [StudentController::class, 'byModule']);
+
+Route::get('/filieres/all', [App\Http\Controllers\FiliereController::class, 'index']);
 
 Route::get('/modules', [ModuleController::class, 'index']);
 Route::get('/filieres/{filiere}/semestres/{semestre}/modules', [ModuleController::class, 'moduleByFiliereSemestre']);

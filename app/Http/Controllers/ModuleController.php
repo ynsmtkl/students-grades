@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class ModuleController extends Controller
 {
     public function index(){
-        $data = Module::with(['filiere', 'enseignant'])->get();
+        $data = Module::with(['enseignant'])->get();
 
         return response()->json($data);
     }
